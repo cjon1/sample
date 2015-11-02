@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_secure_password
   
   #before_save { |user| user.email = email.downcase }
-  # [Note: the 3 lines above & below seem to do mostly the same thing i.e. = alternate syntax ]
+  # [Note: the 3 lines above & below seem to do mostly the same thing i.e. = alternate syntax ] [all pass the tests]
   before_save { |user| user.email.downcase! }
   #before_save { email.downcase! }
   
