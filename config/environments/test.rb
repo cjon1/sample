@@ -34,4 +34,14 @@ SampleApp::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # This bit added by CJ 2015-11-03 [reduce security = improve speed]
+  # NOTE: before this change: tests = 2.82 seconds
+  #        after this change: tests = 0.51039 seconds
+
+  # Speed up tests by lowering BCrypts's cost function
+  require 'bcrypt'
+  silence_warnings do
+    BCrypt::Engine::DEFAULT_COST = BCrypt::Engine::MIN_COST
+  end
 end
